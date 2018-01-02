@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>US Per Capita Consumption Trend Of Poultry And Livestock</title>
+	<!-- D3 -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:400,700" rel="stylesheet">
+	<!-- Stylesheet -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<!-- Introduction -->
+		<h2><span class="chicken">Chicken</span> Beats <span class="beef">Beef</span> and <span class="pork">Pork</span> on Americans' Dinner Table</h2>
+
+		<!-- Main Chart -->
+		<div id="tooltip">
+				<div id="intro">
+					<div>US per-capita consumption <strong><span id="year"></span></strong> <span id="percent-consumption">compared to 1960</span></div>
+					<div><button id="switch">Show Percentage Change</button></div>
+				</div>
+				<div id="legend">
+					<div class="chicken legend-item"><strong><span>Chicken</span> <span class="value" id="chicken-value"></span> <span class="lbs">lbs</span></strong></div>
+					<div class="beef legend-item"><strong><span>Beef</span> <span class="value" id="beef-value"></span> <span class="lbs">lbs</span></strong></div>
+					<div class="pork legend-item"><strong><span>Pork</span> <span class="value" id="pork-value"></span> <span class="lbs">lbs</span></strong></div>
+				</div>
+		</div>
+		<div><svg id="chart"></svg></div>
+
+	</div>
+	<script src="js/index.js"></script>
+</body>
+</html>

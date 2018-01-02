@@ -1,0 +1,79 @@
+body {
+	font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+.container {
+	width: 720px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+h2 {
+	text-transform: uppercase;
+}
+
+.chicken {
+	color: #B5CF6B;
+}
+
+.beef {
+	color: #E7BA52;
+}
+
+.pork {
+	color: #D6616B;
+}
+
+#intro {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+#percent-consumption {
+	opacity: 0;
+}
+
+button {
+	cursor: pointer;
+	background-color: #161616;
+	color: #FFF;
+	border: none;
+	padding: 6px 12px;
+	border-radius: 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1em;
+	transition: background-color 150ms linear;
+}
+
+button:hover {
+	background-color: #666666;
+}
+
+#legend {
+	display: flex;
+}
+
+.legend-item {
+	flex: 1;
+}
+
+.lbs {
+	opacity: 0;
+}
+
+.value {
+	font-size: 1.5em;
+}
+
+.axis .domain {
+	stroke: none;
+}
+
+.y-axis .tick line {
+	stroke: none;
+}

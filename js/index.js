@@ -1,5 +1,10 @@
 /* jshint esversion: 6 */
+
 (function(){
+	///////////////////////////////////////////////////////////////////
+	//// Inital Set Up ////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
+	// Global variables
 	const width = 665;
 	const height = 400;
 	const margin = {top: 10, right: 10, bottom: 20, left: 45};
@@ -10,6 +15,10 @@
 
 	let data, years, consumptionExtent, percentChangeExtent, pathLines, yAxisG;
 
+	const line = d3.line();
+
+	///////////////////////////////////////////////////////////////////
+	// Scales
 	const x = d3.scaleLinear()
 			.range([0, width]);
 
@@ -20,8 +29,8 @@
 			.domain(ids)
 			.range(["#B5CF6B", "#E7BA52", "#D6616B"]);
 
-	const line = d3.line();
-
+	///////////////////////////////////////////////////////////////////
+	// SVG containers
 	const g = d3.select("#chart")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
@@ -31,9 +40,13 @@
 	const lineChart = g.append("g")
 			.attr("class", "line-chart");
 
+	///////////////////////////////////////////////////////////////////
+	//// Tooltip //////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
 	const overlay = g.append("g")
 			.attr("class", "overlay");
 
+	// Rect to capture mouse movement for tooltip
 	overlay.append("rect")
 			.attr("width", width)
 			.attr("height", height)
@@ -57,6 +70,9 @@
 					.style("fill", "none")
 					.style("pointer-events", "none");
 
+	///////////////////////////////////////////////////////////////////
+	//// Data Processing //////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
 	d3.csv("data/poultry_livestock_consumption.csv", (row) => ({
 		year: +row.Year,
 		chicken: +row.Chicken,
@@ -90,6 +106,10 @@
 			d3.max(data, id => d3.max(id.values, d => d.percentChange)),
 		];
 
+		/////////////////////////////////////////////////////////////////
+		//// Chart (Fixed Part) /////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////
+
 		x.domain(d3.extent(rawData, d => d.year));
 
 		line.x(d => x(d.year));
@@ -114,14 +134,9 @@
 		update(flag);
 	});
 
-	d3.select("#switch").on("click", () => {
-		flag = !flag;
-		update(flag);
-		d3.select("#percent-consumption")
-			.style("opacity", flag ? 0 : 1);
-		d3.select("#switch")
-			.text(flag ? "Show Percent Change" : "Show Consumption Values");
-	});
+	///////////////////////////////////////////////////////////////////
+	//// Chart (Update Part) //////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
 
 	function update(flag) {
 		y.domain(flag ? consumptionExtent : percentChangeExtent);
@@ -143,6 +158,21 @@
 				.attr("d", d => line(d.values));
 	}
 
+	///////////////////////////////////////////////////////////////////
+	//// Event Listeners //////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
+	// Switch chart type
+	d3.select("#switch").on("click", () => {
+		flag = !flag;
+		update(flag);
+		d3.select("#percent-consumption")
+			.style("opacity", flag ? 0 : 1);
+		d3.select("#switch")
+			.text(flag ? "Show Percent Change" : "Show Consumption Values");
+	});
+
+	///////////////////////////////////////////////////////////////////
+	// Toopltip
 	function showTooltip() {
 		tooltip.transition().style("opacity", 1);
 	}

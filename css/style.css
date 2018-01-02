@@ -1,5 +1,6 @@
 body {
 	font-family: 'Encode Sans Expanded', sans-serif;
+	font-size: 14px;
 }
 
 .container {
@@ -76,4 +77,8 @@ button:hover {
 
 .y-axis .tick line {
 	stroke: none;
+}
+
+.tick text {
+	font-size: 14px;
 }

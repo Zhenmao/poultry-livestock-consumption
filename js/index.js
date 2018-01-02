@@ -1,8 +1,8 @@
 /* jshint esversion: 6 */
 (function(){
-	const width = 670;
+	const width = 665;
 	const height = 400;
-	const margin = {top: 10, right: 10, bottom: 20, left: 40};
+	const margin = {top: 10, right: 10, bottom: 20, left: 45};
 
 	const ids = ["chicken", "beef", "pork"];
 
